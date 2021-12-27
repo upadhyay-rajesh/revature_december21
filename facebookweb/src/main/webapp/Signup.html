@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	.def{color:blue}
+	#abc{ color:red}
+	p{color:cyan}
+
+</style>
+
+</head>
+<body>
+	<center>
+	<p id="abc" class="q"><font  size="5" ><b>Signup Page</b></font></p>
+	<p id="sss" class="s"><font  size="5" ><b>Signup Page1</b></font></p>
+	<p id="ddd" class="def"><font  size="5" ><b>Signup Page2</b></font></p>
+	<form action="CreateProfileServlet" method="post"> <!-- connect servlet with html form using action -->
+	
+		<table border="5">
+			<tr>
+				<td>Name</td>
+				<td><input type="text"  name="name"></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="password" name="pass"></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="email" name="email"></td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td><input type="text" name="address"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Register"></td>
+				<td><input type="reset"></td>
+			</tr>
+		</table>
+		 
+	</form>
+	<a href="Signin.html">Sign in</a>
+	</center>
+</body>
+</html>
