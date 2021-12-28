@@ -3,10 +3,14 @@ package com.facebookweb.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.facebookweb.entity.FacebookUser;
 import com.facebookweb.service.FacebookServiceInterface;
@@ -14,10 +18,19 @@ import com.facebookweb.utility.ServiceFactory;
 
 
 public class LoginProfileServlet extends HttpServlet {
+	
+	
+	public void init(ServletConfig sf) {
+		
+	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email=request.getParameter("email");
 		String password=request.getParameter("pass");
+		
+		//ServletContext sc=getServletContext();
+		//Object oo=sc.getAttribute("mm");
+		//String a=oo.toString();
 		
 		FacebookUser fb=new FacebookUser();
 		fb.setEmail(email);
@@ -31,17 +44,26 @@ public class LoginProfileServlet extends HttpServlet {
 		
 		out.println("<html><body>");
 			if(b) {
-				out.println("Welcome "+email);
-				out.println("<br><a href=TimeLineServlet>TimeLine</a>");
-				out.println("<br><a href=ViewProfileServlet>View Profile</a>");
-				out.println("<br><a href=DeleteProfileServlet>delete profile</a>");
-				out.println("<br><a href=EditProfileServlet>edit profile</a>");
-				out.println("<br><a href=SearchProfileServlet>search profile</a>");
+				
+				//ServletContext sc=getServletContext();
+				HttpSession sc=request.getSession(true);
+				sc.setAttribute("em", email);
+				sc.setAttribute("pw", password);
+				
+				sc.setMaxInactiveInterval(2);
+				
+				RequestDispatcher rd=getServletContext().getRequestDispatcher("LoginSuccessServlet");
+				rd.forward(request, response);
+				
+				//response.sendRedirect("Signin.html");
 				
 			}
 			else {
-				out.println("Invalid id and password <a href=Signin.html>Try Again</a>");
+				out.println("<font color=red size=5>Invalid id and password</font>");
+				RequestDispatcher rd=getServletContext().getRequestDispatcher("/Signin.html");
+				rd.include(request, response);
 			}
+			out.println("</body></html>");
 	}
 
 }

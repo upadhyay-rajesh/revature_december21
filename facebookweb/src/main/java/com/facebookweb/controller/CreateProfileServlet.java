@@ -3,6 +3,7 @@ package com.facebookweb.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,10 @@ public class CreateProfileServlet extends HttpServlet {
 		
 		out.println("<html><body>");
 		if(i>0) {
+			//how to share attribute on container
+			ServletContext sc=getServletContext();
+			sc.setAttribute("mm", address);
+			
 			out.println(name+" your profile created successfully ");
 			out.println("<br>your password is "+password);
 			out.println("<br>User Name  is "+email);

@@ -16,6 +16,18 @@
   	<description></description>
   	<servlet-class>com.facebookweb.controller.LoginProfileServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>LoginSuccessServlet</servlet-name>
+  	<display-name>LoginSuccessServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.LoginSuccessServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ViewProfileServlet</servlet-name>
+  	<display-name>ViewProfileServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.ViewProfileServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CreateProfileServlet</servlet-name>
   	<url-pattern>/CreateProfileServlet</url-pattern>
@@ -23,5 +35,13 @@
   <servlet-mapping>
   	<servlet-name>LoginProfileServlet</servlet-name>
   	<url-pattern>/LoginProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginSuccessServlet</servlet-name>
+  	<url-pattern>/LoginSuccessServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ViewProfileServlet</servlet-name>
+  	<url-pattern>/ViewProfileServlet</url-pattern>
   </servlet-mapping>
 </web-app>
