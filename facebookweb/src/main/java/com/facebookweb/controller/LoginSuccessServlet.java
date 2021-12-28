@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,10 @@ public class LoginSuccessServlet extends HttpServlet {
 				out.println("<br><a href=DeleteProfileServlet>delete profile</a>");
 				out.println("<br><a href=EditProfileServlet>edit profile</a>");
 				out.println("<br><a href=SearchProfileServlet>search profile</a>");
+				
+				Cookie cc=new Cookie("bharat", "Azmer");
+				response.addCookie(cc);
+				
 		out.println("</body></html>");
 	}
 

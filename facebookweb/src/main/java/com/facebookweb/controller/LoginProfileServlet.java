@@ -20,13 +20,12 @@ import com.facebookweb.utility.ServiceFactory;
 public class LoginProfileServlet extends HttpServlet {
 	
 	
-	public void init(ServletConfig sf) {
-		
-	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email=request.getParameter("email");
 		String password=request.getParameter("pass");
+		
+		String ss=request.getRequestURI();
 		
 		//ServletContext sc=getServletContext();
 		//Object oo=sc.getAttribute("mm");
@@ -46,14 +45,23 @@ public class LoginProfileServlet extends HttpServlet {
 			if(b) {
 				
 				//ServletContext sc=getServletContext();
+				//httpsession will create session and by default will store session id inside client machine cookies.
+				//cookies are the small program used to store information on client machine and every cookie can store upto 4 mb data.
+				//if cookies are disable on client machine then how server will maintain session?
+				//via url rewriting concept.
+				//how?
+				//response.encodeUrl(ss+"?JSESSIONID="+sc.getId());
+				
+			
 				HttpSession sc=request.getSession(true);
 				sc.setAttribute("em", email);
 				sc.setAttribute("pw", password);
 				
 				sc.setMaxInactiveInterval(2);
+				//response.encodeUrl(ss+"?JSESSIONID="+sc.getId());
 				
-				RequestDispatcher rd=getServletContext().getRequestDispatcher("LoginSuccessServlet");
-				rd.forward(request, response);
+				RequestDispatcher rd1=getServletContext().getRequestDispatcher("/LoginSuccessServlet");
+				rd1.forward(request, response);
 				
 				//response.sendRedirect("Signin.html");
 				
