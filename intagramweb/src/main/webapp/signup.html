@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	function loadCountry() {
+		//step 1 how to get xhr
+		var xhr=new XMLHttpRequest();
+		
+		//step 2 how xhr will open connection with server
+		xhr.open("GET","UserController?choice=countryList",true);
+		
+		//step 3 how xhr will send request
+		xhr.send();
+		
+		//step 4 how xhr will take response
+		xhr.onreadystatechange= function(){
+			if(xhr.readyState==4){
+				var v=xhr.responseText;
+				document.getElementById("country").innerHTML=v;
+			}
+		}
+	}
+	
+	function checkPass(){
+		var p=document.getElementById("pp").value;
+		//step 1 how to get xhr
+		var xhr=new XMLHttpRequest();
+		
+		//step 2 how xhr will open connection with server
+		xhr.open("GET","UserController?choice=passwordCheck&pass="+p,true);
+		
+		//step 3 how xhr will send request
+		xhr.send();
+		
+		//step 4 how xhr will take response
+		xhr.onreadystatechange= function(){
+			if(xhr.readyState==4){
+				var v=xhr.responseText;
+				document.getElementById("passst").innerHTML=v;
+			}
+		}
+	}
+	
+	function checkEmail(){
+		
+		var p=document.getElementById("em").value;
+	
+		//step 1 how to get xhr
+		var xhr=new XMLHttpRequest();
+		
+		//step 2 how xhr will open connection with server
+		xhr.open("GET","UserController?choice=emailCheck&email="+p,true);
+		
+		//step 3 how xhr will send request
+		xhr.send();
+		
+		//step 4 how xhr will take response
+		xhr.onreadystatechange= function(){
+			if(xhr.readyState==4){
+				var v=xhr.responseText;
+				document.getElementById("emresult").innerHTML=v;
+			}
+		}
+	}
+	
+	function loadState(){
+		var p=document.getElementById("c1").value;
+		//step 1 how to get xhr
+		var xhr=new XMLHttpRequest();
+		
+		//step 2 how xhr will open connection with server
+		xhr.open("GET","UserController?choice=sateCheck&cc="+p,true);
+		
+		//step 3 how xhr will send request
+		xhr.send();
+		
+		//step 4 how xhr will take response
+		xhr.onreadystatechange= function(){
+			if(xhr.readyState==4){
+				var v=xhr.responseText;
+				document.getElementById("state").innerHTML=v;
+			}
+		}
+	}
+</script>
+
+
+
+</head>
+<body onLoad="loadCountry()">
+	<center>
+		<p>Registration page</p>
+		<form action="UserController?choice=createProfile" method="post">
+
+			<table border=5>
+				<tr>
+					<td>Name</td>
+					<td><input type=text id="nm" name="nm" pattern="[a-zA-Z]+"></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" id="pp" name="pass" minLength=4
+						maxLength=15 pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"   onkeyup="checkPass()">
+					<div id="passst"></div></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="email" id="em" name="email"   onkeyup="checkEmail()"><div id="emresult"></div></td>
+				</tr>
+
+				<tr>
+					<td>Gender</td>
+					<td><input type="radio" id="gen" name="gen" value="male">Male
+						<input type="radio" id="gen" name="gen" value="female">Female</td>
+				</tr>
+				<tr>
+					<td>Country</td>
+					<td><div id="country"></div><div id="state"></div><div id="city"></div></td>
+				</tr>
+				<tr>
+					<td><input type=submit id="bb" disabled></td>
+					<td><input type=reset></td>
+				</tr>
+			</table>
+
+
+		</form>
+	</center>
+</body>
+</html>
