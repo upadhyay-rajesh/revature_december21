@@ -5,27 +5,46 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import com.facebookweb.entity.FacebookUser;
 
 public class FacebookDAO implements FacebookDAOInterface {
+	
+	private SessionFactory sf;
+	
+	public FacebookDAO() {
+		sf=new Configuration().configure().buildSessionFactory();
+	}
 
 	public int createProfileDAO(FacebookUser fb) {
 		int i=0;
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","rajesh");
-			PreparedStatement ps=con.prepareStatement("insert into facebookuser values(?,?,?,?)");
-			ps.setString(1, fb.getName());
-			ps.setString(2, fb.getPassword());
-			ps.setString(3, fb.getEmail());
-			ps.setString(4, fb.getAddress());
-			i=ps.executeUpdate();
-			
-		}
-		catch(ClassNotFoundException|SQLException e) {
-			e.printStackTrace();
-		}
+		
+		Session ss=sf.openSession();
+		EntityTransaction et=ss.getTransaction();
+		et.begin();
+			ss.save(fb);
+		et.commit();
+		i=1;
+		
+		/*
+		 * try { Class.forName("oracle.jdbc.driver.OracleDriver"); Connection
+		 * con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE",
+		 * "system","rajesh"); PreparedStatement
+		 * ps=con.prepareStatement("insert into facebookuser values(?,?,?,?)");
+		 * ps.setString(1, fb.getName()); ps.setString(2, fb.getPassword());
+		 * ps.setString(3, fb.getEmail()); ps.setString(4, fb.getAddress());
+		 * i=ps.executeUpdate();
+		 * 
+		 * } catch(ClassNotFoundException|SQLException e) { e.printStackTrace(); }
+		 */
 		return i;
 	}
 
@@ -52,5 +71,21 @@ public class FacebookDAO implements FacebookDAOInterface {
 		}
 		return b;
 	}
-
+	
+	public List<FacebookUser> getAllProfile(){
+		Session ss=sf.openSession();
+		Query q=ss.createQuery("from com.facebookweb.entity.FacebookUser f");
+		List<FacebookUser> ll=q.getResultList();
+		return ll;
+	}
 }
+
+
+
+
+
+
+
+
+
+

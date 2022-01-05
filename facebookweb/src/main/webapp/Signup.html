@@ -12,6 +12,27 @@
 
 </style>
 
+<script type="text/javascript">
+
+	function getCaptcha(){
+		var vv=parseInt(Math.random()*10000);
+		document.getElementById("cc").innerHTML="<tr><td><input type=text id=cc1 disabled value="+vv+"></td><td><button onclick=getCaptcha()>referesh</button></td></tr><tr><td>Enter above value</td><td><input type=text id=cc2><button onclick=validateCaptcha()>validate</button></td></tr>";
+		
+	}
+	
+	
+	function validateCaptcha(){
+		var v1=document.getElementById("cc1").value;
+		var v2=document.getElementById("cc2").value;
+		if(v1==v2){
+			document.getElementById("bb").disabled=false;
+		}
+		else{
+			alert("invalid captcha");
+		}
+	}
+</script>
+
 </head>
 <body>
 	<center>
@@ -23,11 +44,11 @@
 		<table border="5">
 			<tr>
 				<td>Name</td>
-				<td><input type="text"  name="name"></td>
+				<td><input type="text"  name="name" required></td>
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="password" name="pass"></td>
+				<td><input type="password" name="pass" maxlength="15" minlength="6"  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"></td>
 			</tr>
 			<tr>
 				<td>Email</td>
@@ -35,10 +56,11 @@
 			</tr>
 			<tr>
 				<td>Address</td>
-				<td><input type="text" name="address"></td>
+				<td><input type="text" name="address" onBlur="getCaptcha()"></td>
 			</tr>
+			<div id="cc"></div>
 			<tr>
-				<td><input type="submit" value="Register"></td>
+				<td><input type="submit" value="Register" id="bb" disabled></td>
 				<td><input type="reset"></td>
 			</tr>
 		</table>

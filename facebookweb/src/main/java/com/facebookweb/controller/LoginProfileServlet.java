@@ -26,7 +26,15 @@ public class LoginProfileServlet extends HttpServlet {
 		String password=request.getParameter("pass");
 		
 		String ss=request.getRequestURI();
-		
+		/*
+		 *   <context-param>
+  	 			<param-name>abc</param-name>
+   				<param-value>Revature</param-value>
+   			</context-param>
+   			
+   			//ServletContext sc=getServletContext();
+			/sc.setAttribute("abc","Revature");
+		 */
 		//ServletContext sc=getServletContext();
 		//Object oo=sc.getAttribute("mm");
 		//String a=oo.toString();

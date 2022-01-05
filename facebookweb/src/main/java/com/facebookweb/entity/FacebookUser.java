@@ -1,16 +1,35 @@
 package com.facebookweb.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity  //this line is mandatory
+@Table(name = "facebooksocialmedia") //this line is optional if we will not give then table name in database will be class name (FacebookUser) by default 
 public class FacebookUser {
+	@Id//this line is mandatory
+	@GeneratedValue(strategy = GenerationType.AUTO) //this line is optional  ,this line is used to create auto generated id
+	private long userId;
 	
 	private String name;
 	private String password;
 	private String email;
 	private String address;
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public long getUserId() {
+		return userId;
+	}
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 	public String getPassword() {
 		return password;
