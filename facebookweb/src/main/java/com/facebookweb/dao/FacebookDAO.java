@@ -78,6 +78,25 @@ public class FacebookDAO implements FacebookDAOInterface {
 		List<FacebookUser> ll=q.getResultList();
 		return ll;
 	}
+	
+	public int updateProfile(FacebookUser f) {
+		Session ss=sf.openSession();
+		Query q=ss.createQuery("update com.facebookweb.entity.FacebookUser f set f.name=:nn where f.email=:em");
+		q.setParameter("nn", f.getName());
+		q.setParameter("em", f.getEmail());
+		int i=q.executeUpdate();
+		return i;
+		
+	}
+	
+	public int deleteProfile(FacebookUser f) {
+		Session ss=sf.openSession();
+		Query q=ss.createQuery("delete from com.facebookweb.entity.FacebookUser f where f.email=:em");
+		q.setParameter("em", f.getEmail());
+		int i=q.executeUpdate();
+		return i;
+		
+	}
 }
 
 

@@ -15,6 +15,7 @@
       <property name="hibernate.hbm2ddl.auto">update</property>
      
       <mapping  class="com.facebookweb.entity.FacebookUser"/>
+       <mapping  class="com.facebookweb.entity.Timeline"/>
      
  
 </session-factory>

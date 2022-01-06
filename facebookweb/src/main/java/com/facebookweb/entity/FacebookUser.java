@@ -1,9 +1,14 @@
 package com.facebookweb.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity  //this line is mandatory
@@ -18,6 +23,17 @@ public class FacebookUser {
 	private String email;
 	private String address;
 	
+	@OneToMany(mappedBy = "fuser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Timeline> timeline;
+	
+	
+	
+	public List<Timeline> getTimeline() {
+		return timeline;
+	}
+	public void setTimeline(List<Timeline> timeline) {
+		this.timeline = timeline;
+	}
 	public String getName() {
 		return name;
 	}
