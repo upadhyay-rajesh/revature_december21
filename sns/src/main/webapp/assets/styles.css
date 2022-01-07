@@ -1,0 +1,58 @@
+/** Home Page **/
+body {
+	padding-top: 0;
+	padding-bottom: 40px;
+	background-color: #f5f5f5;
+}
+
+
+@media (min-width: 979px){
+    body {
+            padding-top: 60px;
+    }
+}
+
+
+
+
+/** Global **/
+#content {
+  margin-left:0px;
+}
+
+
+
+
+.block1 {
+	border: 1px solid #ccc;
+	background:white;
+	margin: 1em 0em;
+	border-top: none;
+        margin-left: 280px;
+        
+}
+
+.block-content {
+	margin: 1em;
+	min-height: .25em;
+}
+
+.block-header {
+	margin-bottom: 0px;
+	border-right: none;
+	border-left: none;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+        background: #f78e21;
+	font-size: 1.5em
+}
+.block-header div {
+	padding-top: 10px;
+        color: #fff;
+        font-family: 'Droid Sans', sans-serif;
+}
+
+
+
+
