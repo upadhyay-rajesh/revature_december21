@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<p align="center"><font size=5 color=blue><b>Registration Page</b></font></p>
+<center>
+	<form action="UserServlet?method=register" method="post">
+	<table border="5">
+		<tr><td>Name</td><td><input type=text name=nm></td></tr>
+		<tr><td>Password</td><td><input type=password name=pass></td></tr>
+		<tr><td>Email</td><td><input type=email name=em></td></tr>
+		<tr><td>Gender</td><td><input type=radio name=g value=male>male<input type=radio name=g value=female>female</td></tr>
+		<tr><td>Age</td><td><input type=number name=age></td></tr>
+		<tr><td><input type=submit value="Sign Up"></td><td><input type=reset></td></tr>
+	
+	</table>
+</form>
+<a href=login.html>Already have account</a><a href=index.html>Home</a>
+</center>
+</body>
+</html>
